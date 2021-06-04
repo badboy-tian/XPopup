@@ -139,8 +139,10 @@ public class XPopup {
             this.popupInfo.hasShadowBg = hasShadowBg;
             return this;
         }
+
         /**
          * 是否设置背景为高斯模糊背景，不能和hasShadowBg同时设置，同时设置只有hasBlurBg生效。默认为false
+         *
          * @param hasBlurBg
          * @return
          */
@@ -383,6 +385,7 @@ public class XPopup {
         /**
          * 是否在弹窗消失后就立即释放资源，仅仅适用于弹窗只用一次的场景，默认为false。
          * 如果你的弹窗对象需要用多次，不要开启这个设置
+         *
          * @param isDestroyOnDismiss
          * @return
          */
@@ -603,17 +606,22 @@ public class XPopup {
          */
         public ImageViewerPopupView asImageViewer(ImageView srcView, Object url, boolean isInfinite, int placeholderColor, int placeholderStroke, int placeholderRadius,
                                                   boolean isShowSaveBtn, XPopupImageLoader imageLoader) {
-            popupType(PopupType.ImageViewer);
-            ImageViewerPopupView popupView = new ImageViewerPopupView(this.context)
-                    .setSingleSrcView(srcView, url)
-                    .isInfinite(isInfinite)
-                    .setPlaceholderColor(placeholderColor)
-                    .setPlaceholderStrokeColor(placeholderStroke)
-                    .setPlaceholderRadius(placeholderRadius)
-                    .isShowSaveButton(isShowSaveBtn)
-                    .setXPopupImageLoader(imageLoader);
-            popupView.popupInfo = this.popupInfo;
-            return popupView;
+            try {
+                popupType(PopupType.ImageViewer);
+                ImageViewerPopupView popupView = new ImageViewerPopupView(this.context)
+                        .setSingleSrcView(srcView, url)
+                        .isInfinite(isInfinite)
+                        .setPlaceholderColor(placeholderColor)
+                        .setPlaceholderStrokeColor(placeholderStroke)
+                        .setPlaceholderRadius(placeholderRadius)
+                        .isShowSaveButton(isShowSaveBtn)
+                        .setXPopupImageLoader(imageLoader);
+                popupView.popupInfo = this.popupInfo;
+                return popupView;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 
         /**
@@ -627,7 +635,7 @@ public class XPopup {
          */
         public ImageViewerPopupView asImageViewer(ImageView srcView, int currentPosition, List<Object> urls,
                                                   OnSrcViewUpdateListener srcViewUpdateListener, XPopupImageLoader imageLoader, OnSaveBtnClickListener saveBtnClickListener) {
-            return asImageViewer(srcView, currentPosition, urls, false, false, -1, -1, -1, true,srcViewUpdateListener, imageLoader, saveBtnClickListener);
+            return asImageViewer(srcView, currentPosition, urls, false, false, -1, -1, -1, true, srcViewUpdateListener, imageLoader, saveBtnClickListener);
         }
 
         /**
@@ -686,11 +694,12 @@ public class XPopup {
 
     /**
      * 跳转申请悬浮窗权限界面
+     *
      * @param context
      * @param callback
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public static void requestOverlayPermission(Context context, XPermission.SimpleCallback callback){
+    public static void requestOverlayPermission(Context context, XPermission.SimpleCallback callback) {
         XPermission.create(context).requestDrawOverlays(callback);
     }
 }
