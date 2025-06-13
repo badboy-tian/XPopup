@@ -20,6 +20,8 @@ import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
@@ -65,6 +67,11 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
     public boolean hasMoveUp = false;
     protected Handler handler = new Handler(Looper.getMainLooper());
     protected LifecycleRegistry lifecycleRegistry;
+
+    protected LinearLayout bannerContainer;
+    LinearLayout getBannerContainer() {
+        return bannerContainer;
+    }
 
     public BasePopupView(@NonNull Context context) {
         super(context);

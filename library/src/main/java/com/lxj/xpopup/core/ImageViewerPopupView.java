@@ -8,7 +8,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +58,6 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
     protected FrameLayout container;
     protected PhotoViewContainer photoViewContainer;
     protected BlankView placeholderView;
-    public LinearLayout bannerContainer;
     protected TextView tv_pager_indicator, tv_save;
     protected HackyViewPager pager;
     protected ArgbEvaluator argbEvaluator = new ArgbEvaluator();
@@ -93,6 +91,7 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
             container.addView(customView);
         }
     }
+
 
     @Override
     final protected int getInnerLayoutId() {
