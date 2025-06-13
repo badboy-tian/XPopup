@@ -69,7 +69,7 @@ public abstract class BasePopupView extends FrameLayout implements LifecycleObse
     protected LifecycleRegistry lifecycleRegistry;
 
     protected LinearLayout bannerContainer;
-    LinearLayout getBannerContainer() {
+    public LinearLayout getBannerContainer() {
         return bannerContainer;
     }
 
