@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -58,6 +59,7 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
     protected FrameLayout container;
     protected PhotoViewContainer photoViewContainer;
     protected BlankView placeholderView;
+    public LinearLayout bannerContainer;
     protected TextView tv_pager_indicator, tv_save;
     protected HackyViewPager pager;
     protected ArgbEvaluator argbEvaluator = new ArgbEvaluator();
@@ -83,6 +85,7 @@ public class ImageViewerPopupView extends BasePopupView implements OnDragChangeL
     public ImageViewerPopupView(@NonNull Context context) {
         super(context);
         container = findViewById(R.id.container);
+        bannerContainer = findViewById(R.id.bannerContainer);
         if (getImplLayoutId() > 0) {
             customView = LayoutInflater.from(getContext()).inflate(getImplLayoutId(), container, false);
             customView.setVisibility(INVISIBLE);
