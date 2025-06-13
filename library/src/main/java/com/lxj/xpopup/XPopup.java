@@ -24,6 +24,7 @@ import com.lxj.xpopup.impl.ConfirmPopupView;
 import com.lxj.xpopup.impl.InputConfirmPopupView;
 import com.lxj.xpopup.impl.LoadingPopupView;
 import com.lxj.xpopup.interfaces.OnCancelListener;
+import com.lxj.xpopup.interfaces.OnClickSaveListener;
 import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.lxj.xpopup.interfaces.OnImageViewerLongPressListener;
 import com.lxj.xpopup.interfaces.OnInputConfirmListener;
@@ -948,9 +949,9 @@ public class XPopup {
          * @return
          */
         public ImageViewerPopupView asImageViewer(ImageView srcView, int currentPosition, List<Object> urls,
-                                                  OnSrcViewUpdateListener srcViewUpdateListener, XPopupImageLoader imageLoader) {
+                                                  OnSrcViewUpdateListener srcViewUpdateListener, XPopupImageLoader imageLoader, OnClickSaveListener onClickSaveListener) {
             return asImageViewer(srcView, currentPosition, urls, false, true, -1, -1, -1, true,
-                    Color.rgb(32, 36, 46),srcViewUpdateListener, imageLoader, null);
+                    Color.rgb(32, 36, 46),srcViewUpdateListener, imageLoader, null, onClickSaveListener);
         }
 
         /**
@@ -967,13 +968,15 @@ public class XPopup {
          * @param isShowSaveBtn         是否显示保存按钮，默认显示
          * @param srcViewUpdateListener 当滑动ViewPager切换图片后，需要更新srcView，此时会执行该回调，你需要调用updateSrcView方法。
          * @param longPressListener     当图片长按的时候执行
+         * @param onClickSaveListener   点击保存按钮的时候执行
+         * @param bgColor               背景颜色
          * @return
          */
         public ImageViewerPopupView asImageViewer(ImageView srcView, int currentPosition, List<Object> urls,
                                                   boolean isInfinite, boolean isShowPlaceHolder,
                                                   int placeholderColor, int placeholderStroke, int placeholderRadius, boolean isShowSaveBtn,
                                                   int bgColor,OnSrcViewUpdateListener srcViewUpdateListener, XPopupImageLoader imageLoader,
-                                                  OnImageViewerLongPressListener longPressListener) {
+                                                  OnImageViewerLongPressListener longPressListener, OnClickSaveListener onClickSaveListener ) {
             ImageViewerPopupView popupView = new ImageViewerPopupView(this.context)
                     .setSrcView(srcView, currentPosition)
                     .setImageUrls(urls)
@@ -986,7 +989,8 @@ public class XPopup {
                     .setBgColor(bgColor)
                     .setSrcViewUpdateListener(srcViewUpdateListener)
                     .setXPopupImageLoader(imageLoader)
-                    .setLongPressListener(longPressListener);
+                    .setLongPressListener(longPressListener)
+                    .setOnClickSaveListener(onClickSaveListener);
             popupView.popupInfo = this.popupInfo;
             return popupView;
         }

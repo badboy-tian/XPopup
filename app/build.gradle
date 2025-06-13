@@ -1,11 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 35
+    namespace "com.lxj.xpopupdemo"
+    buildFeatures {
+        buildConfig = true // 强制生成BuildConfig
+    }
     defaultConfig {
         applicationId "com.lxj.xpopupdemo"
-        minSdkVersion 19
-        targetSdkVersion 30
+        minSdkVersion 21
+        targetSdkVersion 35
         versionCode 6
         versionName xpopup_version
 //        ndk {
@@ -38,10 +42,6 @@ android {
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
     }
 
     applicationVariants.all { variant ->

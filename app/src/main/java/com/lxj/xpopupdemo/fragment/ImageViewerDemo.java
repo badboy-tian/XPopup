@@ -25,6 +25,7 @@ import com.lxj.easyadapter.ViewHolder;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BasePopupView;
 import com.lxj.xpopup.core.ImageViewerPopupView;
+import com.lxj.xpopup.interfaces.OnClickSaveListener;
 import com.lxj.xpopup.interfaces.OnImageViewerLongPressListener;
 import com.lxj.xpopup.interfaces.OnSrcViewUpdateListener;
 import com.lxj.xpopup.util.SmartGlideImageLoader;
@@ -181,7 +182,7 @@ public class ImageViewerDemo extends BaseFragment {
                                             RecyclerView rv = (RecyclerView) holder.itemView.getParent();
                                             popupView.updateSrcView((ImageView) rv.getChildAt(position));
                                         }
-                                    }, new SmartGlideImageLoader(true, R.mipmap.ic_launcher), null)
+                                    }, new SmartGlideImageLoader(true, R.mipmap.ic_launcher), null, null)
                             .show();
                 }
             });
@@ -220,7 +221,7 @@ public class ImageViewerDemo extends BaseFragment {
                                         }
                                     });
                                 }
-                            }, new SmartGlideImageLoader())
+                            }, new SmartGlideImageLoader(), null)
                             .show();
                 }
             });
@@ -265,7 +266,7 @@ public class ImageViewerDemo extends BaseFragment {
                                     //保证能拿到child，如果不设置pageLimit，ViewPager默认最多维护3个page，会导致拿不到child
                                     popupView.updateSrcView((ImageView) pager.getChildAt(position));
                                 }
-                            }, new SmartGlideImageLoader(), null)
+                            }, new SmartGlideImageLoader(), null, null)
                             .show();
                 }
             });
