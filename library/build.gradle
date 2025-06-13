@@ -28,3 +28,17 @@ dependencies {
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.9.1"
 }
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.lxj'
+            artifactId = 'xpopup'
+            version = '4.0'
+
+            afterEvaluate {
+                from components.findByName('release')
+            }
+        }
+    }
+}
